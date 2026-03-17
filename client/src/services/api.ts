@@ -2,7 +2,7 @@ import axios, { AxiosError, InternalAxiosRequestConfig } from "axios";
 import useAuthStore from "@/store/useAuthStore";
 import { refreshAuth } from "./authServices";
 
-const axiosPrivate_BASE_URL = "https://react-auth-server.vercel.app/api";
+const axiosPrivate_BASE_URL = "https://react-auth-ts-server.vercel.app/api";
 
 // axios public for auth requsts [login, register, refresh, logout]
 export const axiosPublic = axios.create({
