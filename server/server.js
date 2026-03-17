@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
 app.use(cors(corsOptions));
 app.set("Access-Control-Allow-Credentials", true);
-app.set("Access-Control-Allow-Origin", "http://react-auth-ts.vercel.app");
+app.set("Access-Control-Allow-Origin", process.env.CLIENT_URL);
 
 // ________________ main route:
 app.all("/", (req, res) => {
