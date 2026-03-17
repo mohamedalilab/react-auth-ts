@@ -16,11 +16,17 @@ const app = express();
 // ________________middlewares:
 app.use(cookieParser());
 app.use(express.json());
+const corsOptions = {
+  origin: process.env.CLIENT_URL,
+  credentials: true,
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
+  allowedHeaders: "Content-Type,Authorization",
+};
+app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
 app.use(cors(corsOptions));
 app.set("Access-Control-Allow-Credentials", true);
-app.set("Access-Control-Allow-Origin", process.env.CLIENT_URL);
 
 // ________________ main route:
 app.all("/", (req, res) => {
