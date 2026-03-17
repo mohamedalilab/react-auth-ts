@@ -6,8 +6,6 @@ const cookieParser = require("cookie-parser");
 require("dotenv").config();
 
 const { conCompassDB } = require("./config/connectDB");
-const corsOptions = require("./utils/corsOptions");
-
 const authRoute = require("./routes/auth.route");
 const postRoute = require("./routes/post.route");
 
@@ -25,8 +23,6 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
-app.use(cors(corsOptions));
-app.set("Access-Control-Allow-Credentials", true);
 
 // ________________ main route:
 app.all("/", (req, res) => {
