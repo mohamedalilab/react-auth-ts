@@ -11,9 +11,7 @@ const postRoute = require("./routes/post.route");
 
 const app = express();
 
-// ________________middlewares:
-app.use(cookieParser());
-app.use(express.json());
+// 1. CORS MUST BE FIRST
 const corsOptions = {
   origin: process.env.CLIENT_URL,
   credentials: true,
@@ -21,8 +19,15 @@ const corsOptions = {
   allowedHeaders: "Content-Type,Authorization",
 };
 app.use(cors(corsOptions));
+app.options('*', cors(corsOptions)); // Explicitly handle preflight for all routes
+
+// 2. Security headers
+app.use(helmet()); 
+
+// 3. Parsers
+app.use(express.json());
+app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
-app.use(helmet());
 
 // ________________ main route:
 app.all("/", (req, res) => {
