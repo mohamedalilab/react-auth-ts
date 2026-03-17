@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+:root {
+  --grid-sm: 180px;
+  --grid-md: 250px;
+  --grid-lg: 320px;
+  --error-bg: #fee;
+  --input-border: #e0e0e0;
+  --disabled-input-bg: #f5f5f5;
+  --disabled-btn-bg: #95a5a6;
+  --error-txt: #c33;
+  --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+@theme {
+  --color-body: #f5f6fa;
+  --color-main-layout: #2c3e50;
+  --color-light: #ffffff;
+  --color-theme: #3498db;
+  --color-errorBg: #fee;
+  --color-errorText: #c33;
+  --leading-main: 1.6;
+  --shadow-main: 0px 2px 2px rgba(0, 0, 0, 0.9);
+  --shadow-btn: 0 4px 4px rgba(52, 152, 219, 0.3);
+  --color-logout: #e74c3c;
+  --color-alt-black: #7f8c8d;
+  --color-main-black: #2c3e50;
+  --font-display: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+}
+
+@layer utilities {
+  .grid-auto-sm {
+    grid-template-columns: repeat(auto-fit, minmax(var(--grid-sm), 1fr));
+  }
+  .grid-auto-md {
+    grid-template-columns: repeat(auto-fit, minmax(var(--grid-md), 1fr));
+  }
+  .grid-auto-lg {
+    grid-template-columns: repeat(auto-fit, minmax(var(--grid-lg), 1fr));
+  }
+}
+
+@layer base {
+  * {
+    transition: 0.3s all;
+  }
+  body {
+    @apply bg-body;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    text-transform: capitalize;
+  }
+  a,
+  button,
+  input[type="submit"],
+  input[type="reset"] {
+    cursor: pointer;
+  }
+  input,
+  textarea,
+  button {
+    outline: none;
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+  .container {
+    padding: 0 15px;
+    margin: 0 auto;
+  }
+}
+
+@layer components {
+  .flex-center {
+    @apply flex justify-center items-center;
+  }
+  .flex-between {
+    @apply flex justify-between items-center;
+  }
+  /* buttons */
+  .btn {
+    @apply font-bold rounded sm:py-3 sm:px-8 py-2 px-4 sm:text-lg text-sm
+    border-2 inline-block;
+    &:hover:not(:disabled) {
+      @apply brightness-90 shadow-btn;
+    }
+  }
+  .btn-primary {
+    @apply text-light bg-theme;
+  }
+  .btn-secondary {
+    @apply text-theme border-theme
+    hover:text-light hover:bg-theme;
+  }
+  /* cards */
+  .card {
+    @apply bg-light p-8 rounded-lg;
+  }
+  .card-title {
+    @apply text-main-black text-xl mb-6;
+  }
+  .card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  }
+  /* forms */
+  .form-field {
+    @apply flex flex-col gap-1 relative;
+    &.field-error input.form-input {
+      @apply border-red-500 focus:ring-red-500;
+    }
+  }
+  .form-label {
+    @apply text-main-black font-semibold capitalize;
+  }
+  .form-input {
+    @apply p-3 border border-(--input-border) rounded focus:border-theme;
+  }
+  .form-input-msg {
+    @apply text-red-500 absolute top-full left-0;
+  }
+  .row-border-bottom {
+    border-bottom: 1px solid #ecf0f1;
+  }
+}
+
+@layer utility {
+  input,
+  textarea {
+    &:disabled {
+      background-color: var(--disabled-input-bg);
+    }
+  }
+  button,
+  input[type="submit"],
+  input[type="reset"] {
+    &:disabled {
+      background-color: var(--disabled-btn-bg);
+    }
+  }
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
